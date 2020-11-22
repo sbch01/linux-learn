@@ -1,0 +1,11 @@
+източник където е показано как става:
+https://www.youtube.com/watch?v=AHzGYG2XvMI
+==============================================
+1.Инсталираме tweaks
+sudo apt install gnome-tweak-tool
+
+2.Инсталираме dconf-editor
+sudo apt install dconf-editor
+
+3.Инсталираме Plank Preferences за подобен на мак док
+sudo apt install plank
