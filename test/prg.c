@@ -1,3 +1,6 @@
+\:\:\:
+/*This is header of c program example*/
+\:\:
 #include <iostrem.h>
 
 /*Here add some comment about the code*/
@@ -14,3 +17,5 @@ main (){
 
 	return 0;
 }//end main
+\:
+/*Here is end of code thath is all folks*/
