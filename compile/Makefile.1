@@ -1,0 +1,22 @@
+#Това е коментар
+#Този Makefile е първия мой такъв просто показва някой от възможностите 
+#да изпълнява команди в bash
+#Ще изпълни само генерация на файловете
+#.DEFAULT_GOAL := generate
+
+all: pr_ini_msg generate #clean
+
+pr_ini_msg:
+	@echo "\n" #Ако пред echo няма @ ще се изпише и командата
+	@echo "This is my first Makefile\n"
+
+generate:
+	@echo "Generate files"
+	touch myfile{1..10}.txt
+	
+clean:
+	@echo "Cleaning file..."
+	rm myfile*.txt
+	
+#compile prgc:
+#	gcc prg.c -o prg

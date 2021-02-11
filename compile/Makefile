@@ -1,21 +1,45 @@
-#Това е коментар
-#
-#Ще изпълни само генерация на файловете
-#.DEFAULT_GOAL := generate
+#Този Makefile е пример как може да се компилират няколко файла 
+#в един в конкретния случай примера се състои от два файла val.c
+#и prg.c
+#val.c съдържа валидираща функция, която се ползва в prg.c, зa целта
+#не е необходимо да се използва директивата include, тъй като кода на val.c ще се 
+#прибави към кода на prg.c, достатъчно е само да се декларира прототипа на функцията в 
+#prg.c двата сорс кода се компилират до обектни файлове и после обектните файлове се 
+#компилират в един бинарен. Тази техника пести време за компилация, особено при големи 
+#проекти, където времето за компилация е доста голямо.
 
-all: pr_ini_msg generate #clean
+#https://www.youtube.com/watch?v=GExnnTaBELk&t=1806s линк от който е взет примера естествено леко опростен :)
 
-pr_ini_msg:
-	@echo "\n" #Ако пред echo няма @ ще се изпише и командата
-	@echo "This is my first Makefile\n"
 
-generate:
-	@echo "Generate files"
-	touch myfile{1..10}.txt
+#Общ синтаксис на "рецептите":
+#Цел: зависимост
+#<tab>команда
+
+all: cos prg #Изпълнениети започва от първия ред в тази рецепта се посочва кои рецепти да се изпълнят
+#рецепта cos се изпълнява на ред 30 а prg  на ред 21
+
+prg: prg.o val.o #Ако файловете prg.o и val.o не са генерирани се изпълняват редове 24 и 27
+	gcc prg.o val.o -o prg
+
+prg.o: prg.c val.h
+	gcc prg.c -c 
+
+val.o: val.c
+	gcc val.c -c 
+
+cos: cos.o val.o #Ако файловете cos.o и val.o не са генерирани се изпълняват редове 33 и 27
+	gcc val.o cos.o -o cos -l m
+
+cos.o: cos.c val.h
+	gcc cos.c -c -l m
+
+
+#Тук добавяме изчистващи рецепти
 	
-clean:
-	@echo "Cleaning file..."
-	rm myfile*.txt
-	
-#compile prgc:
-#	gcc prg.c -o prg
+clean: 
+	@rm *.o prg cos
+	@echo "Clean all generated files"
+
+clear: 
+	@rm *.o prg cos
+	@echo "Clean all generated files"
