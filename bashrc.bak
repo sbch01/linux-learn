@@ -117,3 +117,5 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+#Enables bin directory for scripts and programs
+export PATH=~/bin:"$PATH"
