@@ -1,0 +1,52 @@
+#Този Makefile е разширение на Makefile.1, като са добавени променливи за бърза смяна на компилатора
+#Както и променливи за опциите, и имената на изходните програми
+#Тази техника олеснява евентуалната смяна на някое от изброените 
+#
+#
+
+
+CC = gcc        	#Променлива в която се съдържа използвания компилатор
+FLAGS = -o      	#Променлива в която се съдържа опцията за създаване на бинарни фйлове
+LINKER = -c			#Променлива в която се съдържа опциятя за създаване на обектни файлове
+
+MAIN_PRG = my_program 	#Променлива в която се съдържа името на една от програмите, които се компилира
+TRIG_PRG = cos_program 	#Променлива в която се съдържа реализираната тригонометрична програма 
+
+all: $(MAIN_PRG) $(TRIG_PRG)
+
+$(MAIN_PRG): prg.o val.o
+	$(CC) $^ $(FLAGS) $@
+
+prg.o: prg.c val.h
+	$(CC) $< $(LINKER)
+
+val.o: val.c
+	$(CC) $< $(LINKER)
+
+$(TRIG_PRG): cos.o val.o
+	$(CC) $^ $(FLAGS) $@ -l m
+
+cos.o: cos.c val.h
+	$(CC) $< $(LINKER) -l m
+
+
+#Тук добавяме изчистващи рецепти
+	
+clean: 
+	@rm *.o $(MAIN_PRG) $(TRIG_PRG)
+	@echo "Clean all generated files"
+
+clear: 
+	@rm *.o $(MAIN_PRG) $(TRIG_PRG)
+	@echo "Clean all generated files"
+
+#Използаните символи $<, $^, се наричат автоматични променливи 
+#повече за тях на https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
+#
+#В следния израз $< е равносилно на prg.c
+#prg.o: prg.c val.h
+#	$(CC) $< -c 
+
+#В следния израз $^ е равносилно на cos.o val.o а $@ на $(TRIG_PRG)
+#$(TRIG_PRG): cos.o val.o
+#	$(CC) $^ -o $@ -l m
