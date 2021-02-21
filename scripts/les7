@@ -1,0 +1,98 @@
+#!/bin/bash
+
+# Пример за логически тестове с цели числа 
+# Първи пример е без проверка дали променливата е число и ако INT не е число има грешен резултат
+# Втория пример е с проверка по-подробно как се осъществява тя на стр. 389
+# Третия пример е еднакъв с втория, с тази разлика, че е показана тип логична проверка само за цели числа  
+
+INT=-5 # въведи число, или низ, който не съдържа числа
+
+# Първи пример в който не се прави проверка на променливата дали е цяло число
+
+echo "First flow control result:
+--------------------------------------"
+if [ $INT -eq 0 ]; then
+
+	echo "INT is zero."
+	
+else
+	if [ $INT -lt 0 ]; then
+		echo "INT is negative."
+	else
+		echo "INT is positive."
+	fi
+	
+	if [ $((INT % 2)) -eq 0 ]; then
+		echo "INT is even."
+	else
+		echo "INT is odd."
+	fi
+fi
+
+# Втори пример в който се прави проверка на променливата дали е цяло число
+echo "
+Second flow control result:
+---------------------------------------"
+
+if [[ "$INT" =~ ^-?[0-9]+$ ]]; then # Тук тази проверка е особено специална
+				# тя показва как може да се тества стринг чрез regexp повече
+				# на стр. 389  ключови са [[]] и =~ 
+	
+	if [ $INT -eq 0 ]; then
+		echo "INT is zero."
+	else
+		if [ $INT -lt 0 ]; then
+			echo "INT is negative."
+		else
+			echo "INT is positive."
+		fi
+	
+		if [ $((INT % 2)) -eq 0 ]; then
+			echo "INT is even."
+		else
+			echo "INT is odd."
+		fi
+	
+	fi
+else
+	echo "INT is not an integer." >&2
+	#exit 1 #Този коментар се маха ако се изтрие третия пример
+fi
+
+# Третия пример е сходен на втория, но тук е показано със 
+# следните скоби само проверки на цели числа(()) 
+echo "
+Third flow control result:
+---------------------------------------"
+if [[ "$INT" =~ ^-?[0-9]+$ ]]; then 
+			
+	
+	if ((INT == 0)); then # логична проверка само за цели числа
+		echo "INT is zero."
+	else
+		if ((INT < 0)); then # логична проверка само за цели числа
+			echo "INT is negative."
+		else
+			echo "INT is positive."
+		fi
+	
+		if (( ((INT % 2)) == 0)); then # логична проверка само за цели числа
+			echo "INT is even."
+		else
+			echo "INT is odd."
+		fi
+	
+	fi
+else
+	echo "INT is not an integer." >&2
+	exit 1
+fi
+
+
+# Тези проверки важат за квадратни скоби само [[]]
+# integer1 -eq integer2 integer1 е равно на integer2.
+# integer1 -ne integer2 integer1 не е равно integer2.
+# integer1 -le integer2 integer1 е по-малко или равно на integer2.
+# integer1 -lt integer2 integer1 е по-малко integer2.
+# integer1 -ge integer2 integer1 е по-голямо или равно на integer2.
+# integer1 -gt integer2 integer1 е по-голямо integer2.

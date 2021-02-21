@@ -1,0 +1,78 @@
+#!/bin/bash
+#Разгледан е прост пример за контрол на посоката на изпълнение
+#Описани са някои контролни функции свързани с файлове
+#
+
+x=2
+
+if [ $x -eq 5 ] ;then #Условието трябва да бъде с интервал от двете страни на скобите
+
+	echo " x = 5"
+else
+	echo " x != 5"
+fi #С тази интересна команда се приключва 
+
+#Условия свързани с файлове 
+#=====================================================
+
+if [ -e test ]; then #Съществува ли файла test
+
+	echo "file \"test\" exist"
+
+else 
+
+	echo "file \"test\" dosen't exist" 
+	touch test
+	echo "file \"test\" is created" 
+		
+fi 
+
+# Описание на опции повече на стр. 384
+#======================================================
+# -е 	-съществува ли файла 
+# file1 -nt file2   -1 по-нов ли е от 2
+# file1 -nt file2   -1 по-стар ли е от 2
+# -d 	-съществува ли директория 
+# -L 	-съществува ли линк
+# -f	-файла съществува и е стандартен файл
+# -r	-файла съществува и е четим
+# -w	-файла съшествува и може да бъде записвано
+# -x	-файла съществува и е изпълним
+
+#Разгледан по-обширен принмер с тестване на файлове затворен във функция
+#===========================================================
+test_file () {
+# test-file: Evaluate the status of a file
+FILE=~/.bashrc
+if [ -e "$FILE" ]; then
+	
+	if [ -f "$FILE" ]; then
+		echo "$FILE is a regular file."
+	fi
+	
+	if [ -d "$FILE" ]; then
+		echo "$FILE is a directory."
+	fi
+	
+	if [ -r "$FILE" ]; then
+		echo "$FILE is readable."
+	fi
+	
+	if [ -w "$FILE" ]; then
+		echo "$FILE is writable."
+	fi
+	
+	if [ -x "$FILE" ]; then
+		echo "$FILE is executable/searchable."
+	fi
+
+else
+
+	echo "$FILE does not exist"
+	return 1
+
+fi
+}
+
+#Откоментирайки долния ред се тества примера
+test_file

@@ -1,0 +1,28 @@
+#!/bin/bash
+# Program to output a system information page
+
+#
+#Това е първия пример за скрипт илиюстрира два начина за извждане на текст
+#чрез ехо команда 
+
+echo "<HTML>"
+echo "	<HEAD>"
+echo "		<TITLE>My web</TITLE>"
+echo "	</HEAD>"
+echo "	<BODY>"
+echo "		<H>First title</H>"
+echo "	</BODY>"
+echo "</HTML>"
+
+echo "========================================"
+echo "   Same result with one echo command"
+echo "========================================"
+
+echo "<HTML>
+	<HEAD>
+		<TITLE>My web</TITLE>
+	</HEAD>
+	<BODY>
+		<H>First title</H>
+	</BODY>
+</HTML>"

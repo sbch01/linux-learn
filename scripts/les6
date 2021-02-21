@@ -1,0 +1,69 @@
+#!/bin/bash
+#Разгледан е логически контрол за вземане на репения чрез стрингове
+
+INPUT=yes
+
+ANSWER=a
+
+str1 () {
+if [ $INPUT == "yes" ] ; then
+
+	echo "Input is yes"
+	
+elif [ $INPUT == "no" ]; then
+
+	echo "Input is no"
+	
+else 
+
+	echo "Input is uncknown!"
+	
+fi
+return
+}
+
+str2 () {
+
+if [ -z "$ANSWER" ]; then
+
+	echo "There is no answer." >&2
+	return
+	
+fi
+
+if [ "$ANSWER" = "yes" ]; then
+	
+	echo "The answer is YES."
+
+elif [ "$ANSWER" = "no" ]; then
+
+	echo "The answer is NO."
+
+elif [ "$ANSWER" = "maybe" ]; then
+
+	echo "The answer is MAYBE."
+
+else
+	
+	echo "The answer is UNKNOWN."
+	
+fi
+return
+}
+
+echo "First script result
+-----------------------------"
+str1
+
+echo "
+Second script result
+-----------------------------"
+str2
+
+# -n дължината на стринга е по-голяма от нула
+# -z дължината на стринга е нула
+# string1 = string2  стринговете са равни
+# string1 == string2  стринговете са равни. предпочита се да се ползвад два знака за равно
+# string1 != string2 string1 иstring2 се различават
+# string1 > string2 string1 се сортира след string2.
+# string1 < string2 string1 се сортира преди string2.

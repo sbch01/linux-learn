@@ -1,0 +1,38 @@
+#!/bin/bash
+# Program to output a system information page
+
+#В този пример се показва използванто на локални и глобални променлии
+#в ред 35 и 29 се извикват двете функции, но в ред 29 е чрез команда ехо
+#Глобална променлива
+foo=0
+
+#Първа функция
+function first_func () {
+ local foo 
+ foo=1
+ echo "var funct 1: $foo" 
+ return
+}
+
+#Втора функция
+seond_func () {
+ local foo 
+ foo=2
+ echo "var funct 2: $foo" 
+ return
+}
+
+#Принтиране на глобална променлива
+echo "Global var $foo"
+
+#Извикване на първата функция
+echo $(first_func)
+
+#Принтиране на глобална променлива
+echo "Global var $foo"
+
+#Извикване на втората функция
+seond_func
+
+#Принтиране на глобална променлива
+echo "Global var $foo"

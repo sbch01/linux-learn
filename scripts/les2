@@ -1,0 +1,20 @@
+#!/bin/bash
+# Program to output a system information page
+
+#Добавяме и променливи
+repnum="A19.200"
+title="System Information Report $repnum"  #Тук се показва как може да се влагат
+					#променливи една в друга
+
+echo "
+<HTML>
+	<HEAD>
+		<TITLE>$title</TITLE>
+	</HEAD>
+	<BODY>
+		<H>$title</H>
+	</BODY>
+</HTML>
+"
+
+

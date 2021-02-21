@@ -1,0 +1,30 @@
+#!/bin/bash
+# Program to output a system information page
+
+#В този пример е разгледано още един начин за отпечатване на текст, чрез cat <<
+#Добавянето на функция, съдържаща се в самия файл, която може да се извиква многократно
+
+
+TITLE="System Information Report For $HOSTNAME"
+CURRENT_TIME=$(date +"%x %r %Z")
+TIMESTAMP="Generated $CURRENT_TIME, by $USER"
+
+function report () {	#Функция съдържаща се в скрипта
+	echo "My report"
+	return
+}
+
+cat << _EOF
+<HTML>
+	<HEAD>
+		<TITLE>$TITLE</TITLE>
+	</HEAD>
+	<BODY>
+		<H1>$TITLE</H1>
+	<P>$TIMESTAMP</P>
+	$(report)
+	$(report_ex)
+	</BODY>
+</HTML>
+
+_EOF
