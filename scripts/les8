@@ -1,0 +1,106 @@
+#!/bin/bash
+# read-integer: evaluate the value of an integer.
+
+# Този скрипт описва подканване за въвеждане на променливи
+#
+
+
+# Пример едно демонстрира въвеждане на една променлива
+#========================================================
+
+echo -n "First tutorial
+===================================
+Please enter an integer -> " # -n опсията на ехо командата пропуска да изведе курсора на нов ред
+read int
+
+if [[ "$int" =~ ^-?[0-9]+$ ]]; then
+
+	if [ $int -eq 0 ]; then
+		echo "$int is zero."
+	else
+		if [ $int -lt 0 ]; then
+			echo "$int is negative."
+		else
+			echo "$int is positive."
+		fi
+		
+		if [ $((int % 2)) -eq 0 ]; then
+			echo "$int is even."
+		else
+			echo "$int is odd."
+		fi
+	fi
+else
+	echo "Input value is not an integer." >&2
+	#exit 1
+fi
+
+# Пример две демонстрира въвеждане на повече от една променлива разделени чрез интервал
+#========================================================
+
+echo -n "Second tuorial
+================================
+Enter one or more values separate with space> "
+read var1 var2 var3 var4 var5
+echo "var1='$var1'"
+echo "var2='$var2'"
+echo "var3='$var3'"
+echo "var4='$var4'"
+echo "var5='$var5'"
+
+# Провери да въведеш по-млако от пет и повече от пет променливи
+#
+
+#Опции свързани с read 
+#===================================================================
+#-a array - Assign the input to array, starting with index zero. Wewill cover arrays in Chapter 35.
+#-d 'delimiter' - The first character in the string delimiter is used to indicate end of input, rather than a newline character.
+#-e - Use Readline to handle input. This permits input editing in the same manner as the command line.
+#-i string - Use string as a default reply if the user simply presses
+#
+#-n num - Read num characters of input, rather than an entire line.
+#-p prompt - Display a prompt for input using the string prompt.
+#-r - Raw mode. Do not interpret backslash characters as escapes.
+#-s - Silent mode. Do not echo characters to the display as they are typed. This is useful when inputting passwords and other confidential information.
+#-t seconds - Timeout. Terminate input after seconds. read returns a non-zero exit status if an input times out.
+#-u fd - Use input from file descriptor fd, rather than standard input.
+
+
+#Примери демонстрираши работата на различните опции
+#===================================================================
+echo "======================================
+Here start read options tutorial:
+======================================"
+
+# Демонстрация на -d опцията 
+echo -n "Demonstrate -d option
+-------------------------------
+Enter your name and press '.'> "
+read -d . name
+echo "
+Your name is $name
+"
+
+# Демонстрация на -e опцията за разлика от горния пример можем да редактираме със бекспейс
+echo -n "Demonstrate -e option
+-------------------------------
+Enter your name and press '.'> "
+read -ed . name
+echo "
+Your name is $name"
+
+# Демонстрация на -i опциятa, която поставя дефаутен стринг, който можем да редактираме
+echo -n "Demonstrate -i option
+-------------------------------
+Enter your name and press enter> "
+read -ei Stoian name
+echo "
+Your name is $name"
+
+# Демонстрация на -n опциятa, която в конкретния случай няма да възприеме повече от три символа.
+echo -n "Demonstrate -n option
+-------------------------------
+Enter your name and press enter> "
+read -n 3 name
+echo "
+Your name is $name"
