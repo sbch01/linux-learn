@@ -65,6 +65,8 @@ echo "var5='$var5'"
 #-t seconds - Timeout. Terminate input after seconds. read returns a non-zero exit status if an input times out.
 #-u fd - Use input from file descriptor fd, rather than standard input.
 
+#полезна връзка за баш командите в това число и read
+#https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Bash-Builtins
 
 #Примери демонстрираши работата на различните опции
 #===================================================================
@@ -104,3 +106,23 @@ Enter your name and press enter> "
 read -n 3 name
 echo "
 Your name is $name"
+
+# Демонстрация на -p опциятa, която която изписва поясняващ текст
+echo -n "Demonstrate -p option
+-------------------------------
+"
+read -p "Enter your name> "
+echo "
+Your name is $REPLY"
+
+# Демонстрация на -t опциятa, която изчаква зададено време за въвеждане 
+echo -n "Demonstrate -t option if wait 10s prompt will escape
+-------------------------------
+"
+
+if read -t 10 -sp "Enter secret passphrase > " secret_pass; then
+	echo -e "\nSecret passphrase = '$secret_pass'"
+else
+	echo -e "\nInput timed out" >&2
+	exit 1
+fi

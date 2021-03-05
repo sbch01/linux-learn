@@ -1,0 +1,97 @@
+#!/bin/bash
+# while-count: display a series of numbers
+
+
+#Този скрипт се състоии от следните примери:
+#Пример 1 показва основни свойство на циклите wjile
+#Пример 2 е разширение на менюто от les11 тук обаче менюто се зарежда циклично докато не се излезне от него
+#Пример 3 показва основни свойства на циклите until
+
+count=1
+DELAY=3 # Number of seconds to display results
+
+#Начало на пример 1
+#=================================================
+#цикъл, който увеличва стойността на count до 6 
+while [[ $count -le 5 ]]; do
+    echo $count
+    count=$((count + 1))
+done
+
+#цикъл, който намалява стойността на count до 1
+while [[ $count -gt 0 ]]; do
+    echo $count
+    count=$((count -1))
+done 
+
+echo "First example of this script is finished."
+
+sleep $DELAY 
+
+#Начало на пример 2
+#=================================================
+
+while true; do
+
+clear
+cat <<- _EOF_
+    Please Select:
+    1.Display System Information
+    2.Display Disk Space
+    3.Display Home Space Utilization
+    0.Quit
+_EOF_
+
+read -p "Enter selection [0-3] > "
+
+if [[ $REPLY =~ ^[0-3]$ ]]; then
+    
+    if [[ $REPLY == 1 ]]; then
+        echo "Hostname: $HOSTNAME"
+        uptime
+        sleep $DELAY
+        continue
+    fi
+
+    if [[ $REPLY == 2 ]]; then
+        df -h
+        sleep $DELAY
+        continue
+    fi
+
+    if [[ $REPLY == 3 ]]; then
+        
+        if [[ $(id -u) -eq 0 ]]; then
+            echo "Home Space Utilization (All Users)"
+            du -sh /home/*
+        else
+            echo "Home Space Utilization ($USER)"
+            du -sh $HOME
+        fi
+
+        sleep $DELAY #изчаква да видип резултата от изпълненеата команда 
+        continue #връща те в началото 
+    fi
+
+    if [[ $REPLY == 0 ]]; then
+        break #команда чрез, която се излиза от цикъла
+    fi
+
+else
+    echo "Invalid entry."
+    sleep $DELAY
+fi
+
+done
+echo "Program terminated."
+
+#Начало на пример 3
+#=================================================
+
+
+until [[ count -gt 5 ]]; do
+
+count=$((count + 1))
+echo "$count"
+
+done

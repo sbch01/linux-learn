@@ -1,0 +1,26 @@
+#!/bin/bash
+# while-read: read lines from a file
+
+echo "
+First unsorted tutorial:
+====================================
+"
+
+while read distro version release; do
+printf "Distro: %s\tVersion: %s\tReleased: %s\n" \
+$distro \
+$version \
+$release
+done < mysort.txt
+
+echo "
+Second sorted tutorial:
+====================================
+"
+
+sort -k 1,1 -k 2n mysort.txt | while read distro version release; do
+printf "Distro: %s\tVersion: %s\tReleased: %s\n" \
+$distro \
+$version \
+$release
+done
