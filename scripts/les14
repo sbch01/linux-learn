@@ -1,0 +1,26 @@
+#!/bin/bash -x
+# trouble: script to demonstrate common errors
+
+# Добавянето на -х след !/bin/bash на първия ред активира проследяването на изпълнението на кода
+# Можем по всяко време да изключваме или включваме това проследяване както на редове 10, 18 и 22
+
+number=1
+name=Stoian
+
+set +x # изключване на проследяването 
+
+if [[ $number = 1 ]]; then
+    echo "Number is equal to 1."
+else
+    echo "Number is not equal to 1."
+fi
+
+set -x # включване на проследяването
+
+echo "Here is a variable name: $name"
+
+set +x # изключване на проследяването
+
+name=Pesho
+
+echo "Here is a variable name: $name"
