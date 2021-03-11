@@ -9,3 +9,8 @@ first=$1 # чрез $1 се приема първата променлива
 second=$2
 
 echo "Your name is $first $second"
+shift
+echo "Your name is $1 $2"
+shift
+echo "Your name is $1 $2"
+

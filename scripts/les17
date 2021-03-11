@@ -1,0 +1,18 @@
+#!/bin/bash
+# file_info: simple file information program
+
+#Примерно извикване на скрипта ./les17 file
+# като  file e файл съществуващ в текущата директория 
+#
+
+PROGNAME=$(basename $0)
+
+if [[ -e $1 ]]; then
+    echo -e "\nFile Type:"
+    file $1 # Показва типа на файла
+    echo -e "\nFile Status:"
+    stat $1 # Показва метаданни за файла
+else
+    echo "$PROGNAME: usage: $PROGNAME file" >&2 #подсеща за начина на употреба на скрипта
+    exit 1
+fi

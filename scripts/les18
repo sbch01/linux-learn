@@ -1,0 +1,25 @@
+#!/bin/bash
+# posit-params3 : script to demonstrate $* and $@
+
+#Показва специфичните параметри, които могът да бъдат предадени чрез $* и $@
+# Следния пример показва как бихме могли да ги предадем два параметъра заградени в кавички
+
+
+# Функция, която отпечатва получените параметри
+print_params () {
+    echo "\$1 = $1"
+    echo "\$2 = $2"
+    echo "\$3 = $3"
+    echo "\$4 = $4"
+}
+
+# Функция, която приема параметрите
+pass_params () {
+    echo -e "\n" '$* :'; print_params $*
+    echo -e "\n" '"$*" :'; print_params "$*"
+    echo -e "\n" '$@ :'; print_params $@
+    echo -e "\n" '"$@" :'; print_params "$@"
+}
+
+
+pass_params  "word" "words with spaces" #подаваме параметъра на функцията

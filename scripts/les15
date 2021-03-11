@@ -110,7 +110,7 @@ case $REPLY in
 [[:graph:]])    echo "'$REPLY' is a visible character." ;;&
 [[:punct:]])    echo "'$REPLY' is a punctuation symbol." ;;&
 [[:space:]])    echo "'$REPLY' is a whitespace character." ;;&
-[[:xdigit:]])   echo "'$REPLY' is a hexadecimal digit." ;;&
+[[:xdigit:]])   echo "'$REPLY' is a hexadecimal digit." ;;
 
 esac
 
