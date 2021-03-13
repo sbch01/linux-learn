@@ -108,8 +108,10 @@ if [[ -n $interactive ]]; then
             *)  continue
                 ;;
             esac
+        else
+        break
         fi
-    break
+    
     done
 fi
 
