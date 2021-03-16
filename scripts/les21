@@ -1,30 +1,35 @@
 #!/bin/bash
 # longest-word : find longest string in a file
 
-while [[ -n $1 ]]; do
+while [[ -n $1 ]]; do # Докато стринга не се състои от нула символи
     
-    if [[ -r $1 ]]; then
+    if [[ -r $1 ]]; then # ако файла съществува и е четим
         max_word=
         max_len=0
         
-        for i in $(strings $1); do
+        for i in $(strings $1); do  # Тук strings е подобна програма на cat
 
-        len=$(echo $i | wc -c)
+        len=$(echo $i | wc -c) 
+
             if (( len > max_len )); then
-            max_len=$len
-            max_word=$i
+                max_len=$len
+                max_word=$i
             fi
 
         done
 
         echo "$1: '$max_word' ($max_len characters)"
-
+        
         else
 
         echo "file $1 not exist!"
-
+        
     fi
 
     shift
 
 done
+
+if [[ -n $1 ]]; then
+    echo "Usage of this script is: les21 [filename]"
+fi

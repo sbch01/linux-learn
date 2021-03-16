@@ -1,0 +1,33 @@
+#!/bin/bash
+# ul-declare: demonstrate case conversion via declare
+
+#декларира променливи виж declare --help
+declare -u upper
+declare -l lower
+
+echo "---------------------
+Example 1.
+--------------------"
+if [[ $1 ]]; then 
+    upper="$1"
+    lower="$1"
+    echo $upper
+    echo $lower
+fi
+
+
+# Проиграй следнните два случая ./les25 stoian и ./les25 STOIAN
+#
+echo "---------------------
+Example 2.
+--------------------"
+if [[ $1 ]];then
+    echo ${1,,}
+    echo ${1,}
+    echo ${1^^}
+    echo ${1^}
+fi
+
+
+
+
