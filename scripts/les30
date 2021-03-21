@@ -1,0 +1,20 @@
+#!/bin/bash
+# array-sort : Sort an array
+a=(f e d c b a)
+echo "Original array: ${a[@]}
+"
+# Добавяне на членове към масива а
+a+=(t s r q)
+
+a_sorted=($(for i in "${a[@]}"; do echo $i; done | sort))
+
+echo "Sorted array: ${a_sorted[@]}
+"
+
+# Изтриване на масив
+unset a
+echo "Deleted array a: ${a}
+"
+echo "Undeleted array a_sorted: ${a_sorted[@]}
+"
+

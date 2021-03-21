@@ -1,0 +1,44 @@
+#!/bin/bash
+# loan-calc : script to calculate monthly loan payments
+
+# Скрипт използващ bc за по-специфични математични операции и функции
+# за по-подробно виж man bc
+# 
+
+
+PROGNAME=$(basename $0)
+
+# Функция разясняваща употребата на скрипта
+usage () {
+cat <<- EOF
+Usage: $PROGNAME PRINCIPAL INTEREST MONTHS
+Where:
+PRINCIPAL is the amount of the loan.
+INTEREST is the APR as a number (7% = 0.07).
+MONTHS is the length of the loan's term.
+EOF
+}
+
+# Проверка въведени ли са входни данни
+if (($# != 3)); then
+    usage
+    exit 1
+fi
+
+# Задаване на стойности на необходимите променливи
+principal=$1
+interest=$2
+months=$3
+
+# Изчисляване на месечната вноска
+# МНОГО ВАЖНА ПРОМЕНЛИВА ПОЛЗВАНА ОТ bc е scale
+# тя показва колко числа след десетичната запетая да се отпечатват
+# в този пример е 10
+bc <<- EOF
+scale = 10 
+i = $interest / 12
+p = $principal
+n = $months
+a = p * ((i * ((1 + i) ^ n)) / (((1 + i) ^ n) - 1))
+print a, "\n"
+EOF

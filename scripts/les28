@@ -1,0 +1,66 @@
+#!/bin/bash
+# В този скрипт ще покажем как да обработваме масиви
+
+declare -a myarray[13] #деклариране на масив
+
+myarray=([1]=mon tuesday wed [4]= thu fri sat sun) # Присвояване на променливи в масива
+
+# Отпечатване на членовете на масиви и малко повече ;) 
+echo -e "member\tvalue"
+echo -e "------\t-----"
+
+for ((i=0; i<=10; i++));do
+    printf "$i\t${myarray[i]}\n"
+done
+
+echo "-------------------------
+Member of myarray are:"
+echo ${#myarray[@]} # number of array elements
+
+echo "-------------------------
+Member 1 lenght are:"
+echo ${#myarray[1]} #member 1 string lenght
+
+echo "-------------------------
+Array members is:"
+for i in "${myarray[@]}"; do printf "$i "; done
+
+echo "
+-------------------------
+Used array position is:"
+for i in "${!myarray[@]}"; do printf "$i "; done
+
+sleep 5
+
+# Някой особеости при създаване и отпечатване на стринг
+#=============================================================
+
+echo "
+-----------------------------------
+Start second part of script
+-----------------------------------"
+names=("S Banchev" "N Cholakova" "B Danov")
+
+echo "
+Use * 
+-----------------------------------"
+for i in ${names[*]}; do echo $i; done
+
+echo "
+Use @
+-----------------------------------"
+for i in ${names[@]}; do echo $i; done
+
+echo "
+Use * and \"\"
+-----------------------------------"
+for i in "${names[*]}"; do echo $i; done
+
+echo "
+Use @ and \"\"
+-----------------------------------"
+for i in "${names[@]}"; do echo $i; done
+
+
+# Намиране на броя на елементите на масив
+#=========================================================
