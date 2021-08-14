@@ -28,6 +28,8 @@ https://vimawesome.com/
 :options
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+:vsplit file.txt - отваря два файла във вертикални проорци
+
 ============================================================
 Команди за редакция
 ============================================================
@@ -100,20 +102,27 @@ Plugins
 Вим търси плъгини в директория ~./vim
 Там е мястото където се съхраняват разнообразни плъгини 
 В следващите редове ще опишем в стъпки пример за инсталиране на плъгин
-Пруимера е от следния сайт: https://opensource.com/article/20/2/how-install-vim-plugins
+Примера е от следния сайт: https://opensource.com/article/20/2/how-install-vim-plugins
 
 	1. Правим следната директория:
 		mkdir -p ~/.vim/pack/vendor/start
 	2. Клонираме плъгин чрез следната команда от github:
-		git clone --depth 1 \ https://github.com/preservim/nerdtree.git \ ~/.vim/pack/vendor/start/nerdtree 
+		git clone --depth 1\ https://github.com/preservim/nerdtree.git \~/.vim/pack/vendor/start/nerdtree 
 	3. С команда :NERDTree стартираме съответния плъгин 
+
+Този метод не е автоматизиран следващия метод е автоматизиран
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Инсталиране на плъгин с vim-plug
 
 	1. Извикваме чрез следната команда:
 		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim	
 	2. Въведете във ~./vimrc следните редове
-		call plug#begin()
-		Plug 'preservim/NERDTree'
-		call plug#end()
+		" Plugins will be downloaded under the specified directory.                                
+ 		 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
+  		"Declare the list of plugins.
+  		Plug 'tpope/vim-sensible'
+  		Plug 'junegunn/seoul256.vim'
+  
+  		"List ends here. Plugins become visible to Vim after this call.
+  		call plug#end()
