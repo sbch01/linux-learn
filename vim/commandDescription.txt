@@ -114,9 +114,15 @@ Plugins
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Инсталиране на плъгин с vim-plug
 
-	1. Извикваме чрез следната команда:
-		curl -fLo ~/.vim/autoload/plug.vim --create-dirs \  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim	
-	2. Въведете във ~./vimrc следните редове
+	1. Създаваме следната директория:
+		~/.vim/autoload/
+
+	2. В така създадената директория поместваме следния файл
+		plug.vim
+		файлът изтегляме от следния адрес: 
+		https://github.com/junegunn/vim-plug/blob/master/plug.vim
+		
+	3. Въведете във ~./vimrc следните редове
 		" Plugins will be downloaded under the specified directory.                                
  		 call plug#begin(has('nvim') ? stdpath('data') . '/plugged' : '~/.vim/plugged')
 
@@ -126,3 +132,26 @@ Plugins
   
   		"List ends here. Plugins become visible to Vim after this call.
   		call plug#end()
+
+	4. Отваряме vim и въвеждаме  следната команда:
+		:PlugInstall
+	
+	5. След това добавяме следните редове в ~/.vimrc
+
+		call plug#begin('~/.vim/plugged')
+
+		" Make sure you use single quotes
+
+		" On-demand loading                                                                        
+		Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+		Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
+
+		" Using a non-default branch
+		Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+
+		" Initialize plugin system
+		call plug#end()
+
+	~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	Тук се поместват адресите на плъгините и чрез команда :PlugInstall
+	извикана в редактора vim се инсталират 	
