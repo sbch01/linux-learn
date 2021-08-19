@@ -208,3 +208,7 @@ Plugins
 	" see :h vundle for more details or wiki for FAQ
 	" Put your non-Plugin stuff after this line
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Един от най-добрите плъгини за аутокомлит на следния адрес:
+https://vimawesome.com/plugin/youcompleteme-thing-itself
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
