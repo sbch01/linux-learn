@@ -94,7 +94,13 @@ alias l='ls -CF'
 alias learn='cd ~/Documents/LinuxLearn'
 alias fl='xdg-open ./'
 alias gls='ls -l --group-directories-first'
+alias glsa='ls -l --group-directories-first -a'
 alias cls='clear'
+
+# my custom copy and remove comand for dir and content
+alias cpa='cp -R'
+alias rma='rm -R'
+
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -121,3 +127,5 @@ if ! shopt -oq posix; then
 fi
 #Enables bin directory for scripts and programs
 export PATH=~/bin:"$PATH"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
