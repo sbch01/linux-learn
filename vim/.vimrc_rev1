@@ -1,0 +1,40 @@
+
+	colorscheme evening
+
+	set cursorlineopt=number
+	set number relativenumber
+	set cursorline
+
+
+
+	set nocompatible              " be iMproved, required
+	filetype off                  " required
+
+	" set the runtime path to include Vundle and initialize
+	set rtp+=~/.vim/bundle/Vundle.vim
+	call vundle#begin()
+	" alternatively, pass a path where Vundle should install plugins
+	"call vundle#begin('~/some/path/here')
+
+	" let Vundle manage Vundle, required
+	Plugin 'VundleVim/Vundle.vim'
+
+	"Tree for NERDTree command
+	Plugin 'scrooloose/nerdtree'	
+
+	"AirLine bottm fancy tab
+	Plugin 'vim-airline/vim-airline'
+
+	"AirLine Theme
+	Plugin 'vim-airline/vim-airline-themes'
+
+	"Git status information
+	Plugin 'airblade/vim-gitgutter'
+
+	" All of your Plugins must be added before the following line
+
+	call vundle#end()            " required
+	
+	let g:airline#extensions#tabline#enabled = 1
+	let g:airline_powerline_fonts = 1
+	let g:airline_theme='luna'
