@@ -2,7 +2,7 @@
 
 Here is my linux tutorials and memos. In next few row i will describe the content of repository
 
-# Folders
+## Folders
 
 
 |folder|description|
@@ -14,7 +14,7 @@ Here is my linux tutorials and memos. In next few row i will describe the conten
 |scripts|Few example for bash scripts from book [Ward B. - How Linux Works, 2nd Edition - 2014.pdf](https://github.com/sbch01/LinuxLearn/blob/master/Ward%20B.%20-%20How%20Linux%20Works%2C%202nd%20Edition%20-%202014.pdf)
 |vim| The text editor Vim lessons and config files|
 
-# Files
+## Files
 
 |file|description|
 |----|------------|
