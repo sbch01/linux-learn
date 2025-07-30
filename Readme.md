@@ -4,7 +4,7 @@ Here is my linux tutorials and memos. In next few row i will describe the conten
 
 # Folders
 
----
+
 |folder|description|
 |------|---------------------|
 |.icons|Custom icon for linux|
